@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let columnCount = 5;
+        let rowCount = 4;
+
+        const renderTable = () => {
+            const newTable = document.createElement('table');
+            newTable.id = 'tbl';
+            newTable.style.cssText = `
+                border-collapse: collapse;
+                border: 3px solid grey;
+                width: 600px;
+            `;
+
+            document.body.append(newTable);
+
+                
+            for(i=1; i<=rowCount; i++) {
+                let row = document.createElement('tr');
+                row.className = 'row';
+                newTable.append(row);
+            }
+
+            
+            for(i=1; i<=columnCount; i++) {
+                currentTr = document.getElementsByTagName('tr');
+                for (let item of currentTr) {
+                    let column = document.createElement('td');
+                    column.className = 'col';
+                    column.style.cssText = `
+                        border: 1px solid gray;
+                        text-align: center;
+                        color: purple;
+                    `;
+                    column.innerHTML = `Ячейка ${i}`;
+                    item.append(column);
+                }
+            }
+            
+        }
+
+        const deleteTable = () => {
+
+        table = document.getElementById('tbl');
+        allRows = document.getElementsByClassName('row');
+        allColmns = document.getElementsByClassName('col');
+        
+
+        setTimeout(()=> {
+            for(let item of allColmns) {
+                item.innerHTML = '';
+            }
+        }, 2000 );
+
+        setTimeout(()=> {
+            while(allColmns[0]) {
+                allColmns[0].remove(allColmns[0]);
+            }
+        }, 4000 );
+
+        setTimeout(()=> {
+            while(allRows[0]) {
+                allRows[0].remove(allRows[0]);
+            }
+        }, 6000 );
+
+        setTimeout(()=> {
+            table.remove();
+        }, 8000 );
+
+        }
+
+        renderTable();
+        deleteTable();
+
+    </script>
+</body>
+</html>
